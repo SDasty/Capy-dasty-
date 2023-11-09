@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Notas</title>
+    <!-- Agregar enlaces a los archivos CSS de Bootstrap y jQuery (asegúrate de que los archivos estén en la ubicación correcta) -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+    {% block content %}
+    <div class="container">
+        
+        <h1 id="test_hello" >Calcula tu Nota {{nombre}}! </h1>
+        <form method="post">
+            {% csrf_token %}
+            <div id="notas-container">
+                
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" name="nombre_materia" placeholder="Nombre de la Materia">
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control" name="nota" placeholder="Nota" step="0.01">
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control" name="creditos" placeholder="Créditos" step="1">
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-danger remove-button">Eliminar</button>
+                        </div>
+                    </div>
+                    <div style="float: right;">
+                        <img src="{% static 'Capy/images/imagen 10.png' %}" alt="Capybara Image" width="400">
+                    </div>
+                
+            </div>
+            <button type="button" class="btn btn-primary" id="add-button">Añadir nota</button>
+            <button type="button" class="btn btn-success" id="calcular-button">
+                Calcular
+            </button>
+        </form>
+        <div id="resultado" class="mt-4" style="display: none;">
+            <h2 id="test_hello" >Tu Resultado {{nombre}}! </h2>
+            <h4>El promedio de notas es: <span id="promedio-ponderado" class="font-weight-bold">0.00</span></h4>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const calcularButton = document.getElementById("calcular-button");
+            const addButton = document.getElementById("add-button");
+            const notasContainer = document.getElementById("notas-container");
+
+            addButton.addEventListener("click", function() {
+                const notaItem = document.createElement("div");
+                notaItem.className = "nota-item";
+                notaItem.innerHTML = `
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" name="nombre_materia" placeholder="Nombre de la Materia">
+                    </div>
+                    <div class="col">
+                        <input type="number" class="form-control" name="nota" placeholder="Nota" step="0.01">
+                    </div>
+                    <div class="col">
+                        <input type="number" class="form-control" name="creditos" placeholder="Créditos" step="1">
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-danger remove-button">Eliminar</button>
+                    </div>
+                </div>
+                `;
+                notasContainer.appendChild(notaItem);
+
+                // Agregar el manejador de eventos para el botón "Eliminar" del elemento recién creado
+                const removeButton = notaItem.querySelector(".remove-button");
+                removeButton.addEventListener("click", function() {
+                    notasContainer.removeChild(notaItem);
+                });
+            });
+
+            // Agregar el manejador de eventos delegado para los botones "Eliminar"
+            notasContainer.addEventListener("click", function(event) {
+                if (event.target.classList.contains("remove-button")) {
+                    const notaItem = event.target.closest(".nota-item");
+                    if (notaItem) {
+                        notasContainer.removeChild(notaItem);
+                    }
+                }
+            });
+
+            calcularButton.addEventListener("click", function() {
+                calcularPromedioPonderado();
+            });
+
+            function calcularPromedioPonderado() {
+                const elementosNota = document.querySelectorAll('input[name^="nota"]');
+                const elementosCreditos = document.querySelectorAll('input[name^="creditos"]');
+                let sumaNotasCreditos = 0;
+                let sumaCreditos = 0;
+
+                elementosNota.forEach((inputNota, index) => {
+                    const nota = parseFloat(inputNota.value);
+                    const creditos = parseFloat(elementosCreditos[index].value);
+
+                    if (!isNaN(nota) && !isNaN(creditos)) {
+                        sumaNotasCreditos += nota * creditos;
+                        sumaCreditos += creditos;
+                    }
+                });
+
+                const resultadoDiv = document.getElementById("resultado");
+                const promedioPonderadoSpan = document.getElementById("promedio-ponderado");
+
+                if (sumaCreditos === 0) {
+                    promedioPonderadoSpan.textContent = 'N/A';
+                } else {
+                    promedioPonderadoSpan.textContent = (sumaNotasCreditos / sumaCreditos).toFixed(2);
+                }
+                resultadoDiv.style.display = "block";
+            }
+        });
+    </script>
+    {% endblock content %}
+</body>
+</html>

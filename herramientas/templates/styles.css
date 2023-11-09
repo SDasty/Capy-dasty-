@@ -1,0 +1,49 @@
+/* Estilo para el título principal */
+#test_hello {
+    font-size: 2.5rem; /* Tamaño de fuente */
+    color: #007BFF; /* Color del texto */
+    text-align: center; /* Alineación del texto */
+    font-weight: bold; /* Peso de la fuente */
+}
+
+/* Estilo para la descripción */
+#test_exp {
+    font-size: 1.5rem; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    text-align: center; /* Alineación del texto */
+    margin-top: 20px; /* Espacio superior */
+}
+
+/* Estilo para las preguntas */
+#question {
+    font-size: 1.5rem; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    text-align: center; /* Alineación del texto */
+    font-weight: bold; /* Peso de la fuente */
+}
+
+/* Estilo para las opciones de respuesta */
+.form-check-label {
+    font-size: 1rem; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+}
+
+/* Estilo para las casillas de radio */
+.form-check-input {
+    margin: 0 5px; /* Espacio entre las casillas de radio y el texto */
+}
+
+/* Estilo para el botón de envío */
+#send {
+    font-size: 1.2rem; /* Tamaño de fuente */
+    background-color: #007BFF; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Relleno del botón */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+}
+
+/* Estilo para el contenedor de formularios */
+#form {
+    padding: 10px; /* Relleno del contenedor de formularios */
+}
