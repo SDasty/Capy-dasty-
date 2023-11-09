@@ -3,7 +3,6 @@ Capy es una aplicación orientada a los estudiantes universitarios y prospectos 
 # Requisitos
 - Python 3.10.4
 - pip 23.2.1
-- openai 0.27.8
 - Django 4.2.4
 # Instrucciones
 - Busca el archivo llamado y ubicado en chat/api_key.txt
