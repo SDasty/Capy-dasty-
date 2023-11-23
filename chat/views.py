@@ -11,7 +11,7 @@ from langchain.chains import RetrievalQA
 from ctransformers import AutoModelForCausalLM
 from django.utils import timezone
 from .models import Chat
-import openai
+#import openai comentado para ahorrar espacio para que funcione en google cloud services
 from PruebaVocacional.models import Student
 
 DB_FAISS_PATH = 'chat/vectorstore/db_faiss'
@@ -72,7 +72,7 @@ def final_result(query):
     response = qa_result({'query': query})
     return response
 
-openai.api_key = "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"
+#openai.api_key = "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"
 
 def chat(request, id_estudiante):
     student = Student.objects.get(id_estudiante=id_estudiante)
