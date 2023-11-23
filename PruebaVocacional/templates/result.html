@@ -18,24 +18,29 @@
 
         <h1 id="result_tittle">¡Resultados del Test!</h1>
     </div>
-    {% for pos in ranking %}
+    <!-- En tu plantilla/templates/result.html -->
 
-    <div id="row_test" class='row p-3' >
-        <div class="col-md-4 justify-content-end">
-            <div></div>
-            <h3 id="text-result">#{{forloop.counter}}</h3>
-
-        </div>
-        <div class="col-md-4">
-            <h4 id="text-result">{{pos.0}}</h4>
-        </div>
-
-        <div class="col-md-4">
-            <h4 id="text-result">{{pos.1}}%</h4>
-        </div>
-
+{% for pos in ranking %}
+<div id="row_test" class='row p-3' >
+    <div class="col-md-4 justify-content-end">
+        <div></div>
+        <h3 id="text-result">#{{forloop.counter}}</h3>
     </div>
-    {% endfor %}
+    <div class="col-md-4">
+        <h4 id="text-result">{{pos.0}}</h4>
+    </div>
+    <div class="col-md-3">
+        <h4 id="text-result">{{pos.1}}%</h4>
+    </div>
+    <div class="col-md-1 d-flex justify-content-end">
+        <!-- Agregar enlaces y logos -->
+            <a href="{{ pos.2.0.Enlace }}" target="_blank"><img src="{{ pos.2.0.Logo }}" width="80" style="height: auto; margin-right: 15px;"></a>
+            <a href="{{ pos.2.1.Enlace }}" target="_blank"><img src="{{ pos.2.1.Logo }}" width="80" style="height: auto; margin-right: 15px;"></a>
+            <a href="{{ pos.2.2.Enlace }}" target="_blank"><img src="{{ pos.2.2.Logo }}" width="80" style="height: auto; margin-right: 15px;"></a>
+    </div>
+</div>
+{% endfor %}
+
     <div class="d-flex justify-content-center align-items-center ">
     <div></div>
     <a id="button" class="btn btn-primary" href="{% url 'home' id_estudiante=id_estudiante %}">Volver a Home</a>

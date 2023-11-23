@@ -1,3 +1,6 @@
+body {
+  padding: 20px; /* Puedes ajustar este valor según tus preferencias */
+}
 @font-face {
   font-family: "Roboto";
   src: url("../Capy/fonts/Roboto-BlackItalic.ttf");

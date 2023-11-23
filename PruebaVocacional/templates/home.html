@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -14,6 +15,7 @@
     
 </head>
 <body>
+    {% block content %}
     <div class="container" id="login-container">
         <div class="row">
             <div class="col-md-6" id="login-form-1">
@@ -41,7 +43,7 @@
     </div>
 </body>
 </html>
-
+{% endblock content %}
 </body>
 </html>
 
