@@ -11,9 +11,7 @@ from langchain.chains import RetrievalQA
 from ctransformers import AutoModelForCausalLM
 from django.utils import timezone
 from .models import Chat
-import torch
 import openai
-import transformers
 from PruebaVocacional.models import Student
 
 DB_FAISS_PATH = 'chat/vectorstore/db_faiss'
